@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>La hotte des Borieu</title>
+<title>Le Noël des Borieu Rouch Valery Dalcol</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='2' fill='%23c42f2c'/%3E%3Crect x='2' y='7' width='20' height='4' rx='1' fill='%23e2564d'/%3E%3Crect x='11' y='7' width='2' height='14' fill='%23f0bf4c'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,6 +65,20 @@ h1 em{font-style:normal;color:var(--red)}
 .lutin .stars{display:flex;align-items:center;gap:2px;color:var(--gold);font-family:var(--display);font-weight:400;font-size:16px}
 .lutin .crown{color:var(--gold);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
 .empty-line{color:var(--muted);font-size:14px}
+.lutin .rm{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;color:var(--muted);margin-left:-2px}
+.lutin .rm svg{width:11px;height:11px}
+.lutin .rm-yes{padding:2px 8px;border-radius:999px;background:var(--red-soft);color:var(--red);font-size:12px;font-weight:800}
+.lutin-add{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;border:2px dashed var(--line);font-weight:700;color:var(--muted)}
+.lutin-add svg{width:14px;height:14px}
+.take{display:flex;align-items:center;gap:0;border-radius:999px;background:var(--red);color:var(--on-red);overflow:hidden}
+.take select{appearance:none;-webkit-appearance:none;border:0;border-radius:0;background:color-mix(in srgb,var(--on-red) 18%,transparent);color:var(--on-red);font-weight:800;font-size:13px;padding:6px 22px 6px 11px;
+  background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 12px) 52%,calc(100% - 8px) 52%;background-size:4px 4px;background-repeat:no-repeat;max-width:120px}
+.take select option{color:#14301f;background:#fff}
+.take button{padding:6px 11px;font-weight:800;font-size:13px;white-space:nowrap;color:var(--on-red)}
+.take button:disabled{opacity:.6;cursor:not-allowed}
+.cuff .rm{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--on-red) 14%,transparent)}
+.cuff .rm svg{width:12px;height:12px}
+.cuff .rm-yes{flex:none;padding:6px 10px;border-radius:999px;background:var(--on-red);color:var(--red);font-weight:800;font-size:13px;white-space:nowrap}
 
 .tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px;justify-content:space-between}
 .tools-left{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
@@ -143,7 +157,7 @@ select,input[type=text],input[type=url]{font:inherit;color:var(--fg);background:
 <main class="wrap">
   <header class="top">
     <div class="title-row">
-      <h1>La hotte <em>des Borieu</em></h1>
+      <h1>Le Noël <em>des Borieu Rouch Valery Dalcol</em></h1>
       <div class="countdown" id="countdown"></div>
     </div>
     <div class="hotte">
@@ -154,15 +168,12 @@ select,input[type=text],input[type=url]{font:inherit;color:var(--fg);background:
   </header>
 
   <section class="lutins" aria-labelledby="lutins-h">
-    <div class="section-label" id="lutins-h">Classement des lutins</div>
+    <div class="section-label" id="lutins-h">Les lutins et leurs étoiles</div>
     <div class="lutin-row" id="lutins"></div>
   </section>
 
   <div class="tools" id="tools">
     <div class="tools-left">
-      <label class="me-pick" for="me-select">Je suis
-        <select id="me-select"></select>
-      </label>
       <button class="chip-btn" data-filter="all" aria-pressed="true">Tout le monde</button>
       <button class="chip-btn" data-filter="todo" aria-pressed="false">Sans cadeau</button>
     </div>
@@ -223,10 +234,10 @@ let code = decodeURIComponent((location.hash || '').slice(1)) || lsGet('hotte.co
 if (location.hash) { lsSet('hotte.code', code); history.replaceState(null, '', location.pathname + location.search); }
 
 let mode = 'loading';            // loading | ready | nocode | offline
-let people = null, gifts = null;
-let confirmDel = null, peek = false;
+let people = null, gifts = null, givers = [];
+let confirmDel = null, confirmPerson = null, confirmGiver = null;
 let filter = lsGet('hotte.filter') || 'all';
-let myName = lsGet('hotte.name') || '';
+let lastGiver = lsGet('hotte.giver') || '';
 
 async function rpc(fn, args = {}){
   const r = await fetch(`${SB_URL}/rest/v1/rpc/${fn}`, {
@@ -241,7 +252,7 @@ async function rpc(fn, args = {}){
   return r.json();
 }
 function apply(state){
-  people = state.people || []; gifts = state.gifts || [];
+  people = state.people || []; gifts = state.gifts || []; givers = state.givers || [];
   mode = 'ready'; render();
 }
 async function load(){
@@ -291,12 +302,10 @@ function avatar(name){
   let h = 0; for (const c of norm(name)) h = (h * 31 + c.charCodeAt(0)) >>> 0;
   return `<span class="avatar" style="background:${AVATAR_COLORS[h % AVATAR_COLORS.length]}" aria-hidden="true">${initials(name)}</span>`;
 }
-const isMine = g => myName && g.by && norm(g.by) === norm(myName);
-const mePerson = () => (people || []).find(p => myName && norm(p.name) === norm(myName));
+const defaultGiver = () => givers.includes(lastGiver) ? lastGiver : (givers[0] || '');
 
 function render(){
   countdown();
-  renderMePicker();
   document.querySelectorAll('[data-filter]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === filter)));
   $('#tools').hidden = mode !== 'ready';
   if (mode !== 'ready') { renderShell(); return; }
@@ -332,28 +341,24 @@ function renderStats(){
   $('#hotte-sub').textContent = `${stars} étoile${stars>1?'s':''} sur ${total*3}`;
 }
 
+/* Les lutins = ceux qui offrent. Liste gérée dans la page, étoiles calculées sur leurs cadeaux. */
 function renderLutins(){
-  const board = new Map();
+  const score = new Map(givers.map(n => [norm(n), {name:n, stars:0, listed:true}]));
   for (const g of gifts) {
     if (!g.by || g.state === 'idea') continue;
     const k = norm(g.by);
-    const e = board.get(k) || {name:g.by, stars:0};
-    e.stars += STATES[g.state]?.stars || 0; board.set(k, e);
+    const e = score.get(k) || {name:g.by, stars:0, listed:false};
+    e.stars += STATES[g.state]?.stars || 0; score.set(k, e);
   }
-  const rows = [...board.values()].sort((a,b) => b.stars - a.stars);
-  if (!rows.length) { $('#lutins').innerHTML = '<span class="empty-line">Personne n\'a encore réservé. Le premier cadeau pris rapporte une étoile.</span>'; return; }
-  $('#lutins').innerHTML = rows.map((r,i) =>
-    `<div class="lutin${i===0?' first':''}">${avatar(r.name)}<span>${esc(r.name)}</span><span class="stars num">${ICON.star.replace('<svg','<svg width="14" height="14"')}${r.stars}</span>${i===0?'<span class="crown">Lutin en chef</span>':''}</div>`
-  ).join('');
-}
-
-function renderMePicker(){
-  const sel = $('#me-select');
-  const names = (people || []).slice().sort(byOrder).map(p => p.name);
-  if (myName && !names.some(n => norm(n) === norm(myName))) names.unshift(myName);
-  const html = `<option value="">choisis</option>` + names.map(n => `<option value="${esc(n)}">${esc(n)}</option>`).join('') + `<option value="__other">quelqu'un d'autre…</option>`;
-  if (sel.dataset.sig !== html) { sel.innerHTML = html; sel.dataset.sig = html; }
-  sel.value = myName ? (names.find(n => norm(n) === norm(myName)) || '') : '';
+  const rows = [...score.values()].sort((a,b) => b.stars - a.stars);
+  const top = rows[0]?.stars > 0 ? rows[0].name : null;
+  $('#lutins').innerHTML = rows.map(r => {
+    const n = esc(r.name);
+    const rm = !r.listed ? '' : confirmGiver === r.name
+      ? `<button class="rm-yes" data-act="giver-rm-yes" data-name="${n}">Retirer ?</button>`
+      : `<button class="rm" data-act="giver-rm" data-name="${n}" aria-label="Retirer ${n} des lutins" title="Retirer">${ICON.x}</button>`;
+    return `<div class="lutin${r.name===top?' first':''}">${avatar(r.name)}<span>${n}</span><span class="stars num">${ICON.star.replace('<svg','<svg width="14" height="14"')}${r.stars}</span>${r.name===top?'<span class="crown">Lutin en chef</span>':''}${rm}</div>`;
+  }).join('') + `<button class="lutin-add" data-act="giver-add">${ICON.plus}Un lutin</button>`;
 }
 
 const byOrder = (a,b) => (a.ord ?? 999) - (b.ord ?? 999) || String(a.name).localeCompare(String(b.name),'fr');
@@ -371,15 +376,22 @@ function personCard(p){
   const taken = mine.filter(g => g.state !== 'idea').length;
   const stars = mine.reduce((a,g) => a + (STATES[g.state]?.stars || 0), 0);
   const frac = mine.length ? stars / (mine.length * 3) : 0;
-  const isMe = mePerson()?.id === p.id && !peek;
-  const sub = isMe ? 'Surprise, liste emballée' : (mine.length ? `${taken} pris sur ${mine.length} idée${mine.length>1?'s':''}` : 'Pas encore d\'idée');
-  const pid = esc(p.id);
-  const add = `<button class="add" data-act="add" data-person="${pid}" aria-label="Ajouter une idée pour ${esc(p.name)}">${ICON.plus}</button>`;
-  let body;
-  if (isMe) body = `<div class="wrapped-card">${ICON.gift}<p>C'est ta chaussette. On ne regarde pas.</p><div class="row"><button class="act act-soft" data-act="add" data-person="${pid}">Glisser une idée pour moi</button><button class="act act-soft" data-act="peek">Déballer quand même</button></div></div>`;
-  else if (!mine.length) body = `<div class="no-gift"><span>Aucune idée pour l'instant.</span><button class="act act-take" data-act="add" data-person="${pid}">Proposer</button></div>`;
-  else body = `<ul class="gifts">${mine.map(giftRow).join('')}</ul>`;
-  return `<article class="sock-card"><div class="cuff">${sockSvg(p.id, isMe ? 0 : frac)}<div class="cuff-text"><h2>${esc(p.name)}</h2><p class="num">${sub}</p></div>${add}</div>${body}</article>`;
+  const sub = mine.length ? `${taken} pris sur ${mine.length} idée${mine.length>1?'s':''}` : 'Pas encore d\'idée';
+  const pid = esc(p.id), pname = esc(p.name);
+  const add = `<button class="add" data-act="add" data-person="${pid}" aria-label="Ajouter une idée pour ${pname}">${ICON.plus}</button>`;
+  const rm = confirmPerson === p.id
+    ? `<button class="rm-yes" data-act="person-rm-yes" data-person="${pid}">Retirer ${pname} ?</button>`
+    : `<button class="rm" data-act="person-rm" data-person="${pid}" aria-label="Retirer ${pname} de la liste" title="Retirer de la liste">${ICON.x}</button>`;
+  const body = !mine.length
+    ? `<div class="no-gift"><span>Aucune idée pour l'instant.</span><button class="act act-take" data-act="add" data-person="${pid}">Proposer</button></div>`
+    : `<ul class="gifts">${mine.map(giftRow).join('')}</ul>`;
+  return `<article class="sock-card"><div class="cuff">${sockSvg(p.id, frac)}<div class="cuff-text"><h2>${pname}</h2><p class="num">${sub}</p></div>${add}${rm}</div>${body}</article>`;
+}
+
+function giverSelect(id){
+  const cur = defaultGiver();
+  const opts = givers.map(n => `<option value="${esc(n)}"${n===cur?' selected':''}>${esc(n)}</option>`).join('');
+  return `<select id="giver-${esc(id)}" data-giver-for="${esc(id)}" aria-label="Qui prend ce cadeau ?">${opts || '<option value="">aucun lutin</option>'}</select>`;
 }
 
 function giftRow(g){
@@ -387,12 +399,11 @@ function giftRow(g){
   const name = g.url && /^https?:\/\//i.test(g.url) ? `<a href="${esc(g.url)}" target="_blank" rel="noopener noreferrer">${esc(g.label)}</a>` : esc(g.label);
   const starsHtml = st.stars ? ' ' + Array.from({length:st.stars}, () => ICON.star).join('') : '';
   let meta = `<span class="state ${st.cls}">${st.label}${starsHtml}</span>`;
-  if (g.state !== 'idea' && g.by) meta += `<span class="who">${avatar(g.by)}${esc(isMine(g) ? 'par toi' : 'par ' + g.by)}</span>`;
+  if (g.state !== 'idea' && g.by) meta += `<span class="who">${avatar(g.by)}${esc('par ' + g.by)}</span>`;
   const id = esc(g.id);
   let actions = '';
   if (g.state === 'idea') {
-    actions += `<button class="act act-take" data-act="take" data-id="${id}">Je prends</button>`;
-    actions += `<button class="act act-soft" data-act="other" data-id="${id}" title="Noter qu'une autre personne le prend">Autre</button>`;
+    actions += `<span class="take">${giverSelect(g.id)}<button data-act="take" data-id="${id}"${givers.length ? '' : ' disabled'}>Je prends</button></span>`;
   } else {
     if (NEXT[g.state]) actions += `<button class="act act-next" data-act="next" data-id="${id}">${NEXT[g.state][1]}</button>`;
     actions += `<button class="act-icon" data-act="release" data-id="${id}" aria-label="Remettre en idée" title="Remettre en idée">${ICON.undo}</button>`;
@@ -404,23 +415,32 @@ function giftRow(g){
 }
 
 const findGift = id => gifts.find(g => g.id === id);
-function take(id, btn, label){
-  const g = findGift(id); if (!g) return;
-  const by = label || myName;
-  if (!by) { openSheet('name', {then:{id, btn}}); return; }
-  act('hotte_set_state', {p_id:id, p_state:'reserved', p_by:by}, label ? `Noté : ${label} s'en occupe.` : 'Réservé ! Une étoile pour toi.', btn);
-}
+
+/* Le choix du lutin est retenu sur l'appareil pour les cadeaux suivants */
+document.addEventListener('change', e => {
+  const s = e.target.closest('[data-giver-for]');
+  if (!s) return;
+  lastGiver = s.value; lsSet('hotte.giver', lastGiver);
+  document.querySelectorAll('[data-giver-for]').forEach(o => { if (o !== s && givers.includes(lastGiver)) o.value = lastGiver; });
+});
 
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-act],[data-filter]');
   if (!b) return;
   if (b.dataset.filter) { filter = b.dataset.filter; lsSet('hotte.filter', filter); render(); return; }
   const a = b.dataset.act, id = b.dataset.id;
-  if (a !== 'del-yes' && confirmDel) { confirmDel = null; if (a !== 'del') render(); }
-  if (a === 'take') take(id, b);
-  else if (a === 'other') openSheet('other', {id});
+  const keep = {'del':'del','del-yes':'del','person-rm':'person','person-rm-yes':'person','giver-rm':'giver','giver-rm-yes':'giver'}[a];
+  let dirty = false;
+  if (keep !== 'del' && confirmDel) { confirmDel = null; dirty = true; }
+  if (keep !== 'person' && confirmPerson) { confirmPerson = null; dirty = true; }
+  if (keep !== 'giver' && confirmGiver) { confirmGiver = null; dirty = true; }
+  if (dirty && !keep) render();
+  if (a === 'take') {
+    const by = document.getElementById('giver-' + id)?.value || defaultGiver();
+    if (!by) { toast('Ajoute d\'abord un lutin.'); return; }
+    act('hotte_set_state', {p_id:id, p_state:'reserved', p_by:by}, `Réservé par ${by}, une étoile !`, b);
+  }
   else if (a === 'add') openSheet('gift', {person: b.dataset.person});
-  else if (a === 'peek') { peek = true; render(); }
   else if (a === 'next') {
     const g = findGift(id); if (!g || !NEXT[g.state]) return;
     const to = NEXT[g.state][0];
@@ -429,6 +449,14 @@ document.addEventListener('click', e => {
   else if (a === 'release') act('hotte_set_state', {p_id:id, p_state:'idea', p_by:null});
   else if (a === 'del') { confirmDel = id; render(); }
   else if (a === 'del-yes') { confirmDel = null; act('hotte_delete_gift', {p_id:id}, 'Idée retirée.'); }
+  else if (a === 'person-rm') { confirmPerson = b.dataset.person; render(); }
+  else if (a === 'person-rm-yes') {
+    const p = people.find(x => x.id === b.dataset.person); confirmPerson = null;
+    act('hotte_remove_person', {p_id: b.dataset.person}, `${p ? p.name : 'La personne'} a été retiré·e de la liste.`);
+  }
+  else if (a === 'giver-add') openSheet('giver', {});
+  else if (a === 'giver-rm') { confirmGiver = b.dataset.name; render(); }
+  else if (a === 'giver-rm-yes') { const n = b.dataset.name; confirmGiver = null; act('hotte_remove_giver', {p_name: n}, `${n} ne fait plus partie des lutins.`); }
 });
 
 document.addEventListener('submit', e => {
@@ -439,11 +467,6 @@ document.addEventListener('submit', e => {
   code = v; lsSet('hotte.code', v); mode = 'loading'; render(); load();
 });
 
-$('#me-select').addEventListener('change', e => {
-  const v = e.target.value;
-  if (v === '__other') { openSheet('name', {}); return; }
-  myName = v; peek = false; lsSet('hotte.name', myName || null); render();
-});
 $('#add-person').addEventListener('click', () => openSheet('person', {}));
 
 let sheetCtx = null;
@@ -453,13 +476,12 @@ function openSheet(kind, ctx){
   $('#f2-label').hidden = kind !== 'gift';
   const set = (title, label, ph, ok) => { $('#sheet-title').textContent = title; $('#f1-text').textContent = label; f1.placeholder = ph; $('#sheet-ok').textContent = ok; };
   if (kind === 'gift') { const p = people.find(x => x.id === ctx.person); set(`Une idée pour ${p ? p.name : '…'}`, 'Le cadeau', 'Ex : un gaufrier', 'Ajouter'); }
-  else if (kind === 'other') { const g = findGift(ctx.id); set('Qui le prend ?', g ? `Pour « ${g.label} »` : 'Prénom', 'Ex : Maman', 'Réserver'); }
-  else if (kind === 'name') set('Qui es-tu ?', 'Ton prénom', 'Ex : Damien', 'C\'est moi');
+  else if (kind === 'giver') set('Nouveau lutin', 'Prénom de celui ou celle qui offre', 'Ex : Tatie', 'Ajouter');
   else set('Nouvelle chaussette', 'Prénom', 'Ex : Tonton Jacques', 'Accrocher');
   $('#sheet-back').hidden = false;
   setTimeout(() => f1.focus(), 30);
 }
-function closeSheet(){ $('#sheet-back').hidden = true; sheetCtx = null; renderMePicker(); }
+function closeSheet(){ $('#sheet-back').hidden = true; sheetCtx = null; }
 $('#sheet-cancel').addEventListener('click', closeSheet);
 $('#sheet-back').addEventListener('click', e => { if (e.target.id === 'sheet-back') closeSheet(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#sheet-back').hidden) closeSheet(); });
@@ -469,11 +491,7 @@ $('#sheet').addEventListener('submit', e => {
   const ctx = sheetCtx; if (!v1 || !ctx) return;
   closeSheet();
   if (ctx.kind === 'gift') act('hotte_add_gift', {p_person: ctx.person, p_label: v1, p_url: /^https?:\/\//i.test(v2) ? v2 : null}, 'Idée glissée dans la chaussette.');
-  else if (ctx.kind === 'other') take(ctx.id, null, v1);
-  else if (ctx.kind === 'name') {
-    myName = v1.slice(0, 40); peek = false; lsSet('hotte.name', myName); render();
-    if (ctx.then) take(ctx.then.id, ctx.then.btn);
-  }
+  else if (ctx.kind === 'giver') act('hotte_add_giver', {p_name: v1}, `${v1} rejoint les lutins.`);
   else act('hotte_add_person', {p_name: v1}, `${v1} a sa chaussette.`);
 });
 
@@ -531,7 +549,7 @@ if (!reduced) loop();
 /* Démarrage et rafraîchissement régulier tant que l'onglet est visible */
 render();
 load();
-setInterval(() => { if (document.visibilityState === 'visible' && $('#sheet-back').hidden && (mode === 'ready' || mode === 'offline')) load(); }, POLL_MS);
+setInterval(() => { if (document.visibilityState === 'visible' && $('#sheet-back').hidden && document.activeElement?.tagName !== 'SELECT' && (mode === 'ready' || mode === 'offline')) load(); }, POLL_MS);
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && code) load(); });
 })();
 </script>
