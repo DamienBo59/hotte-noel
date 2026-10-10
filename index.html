@@ -208,7 +208,7 @@ const STATES = {
   bought:{label:'Acheté',stars:2,cls:'s-bought'},
   wrapped:{label:'Emballé',stars:3,cls:'s-wrapped'}
 };
-const NEXT = {reserved:['bought','Acheté'],bought:['wrapped','Emballé']};
+const NEXT = {reserved:['bought','J\'ai acheté'],bought:['wrapped','J\'ai emballé']};
 const AVATAR_COLORS = ['#c42f2c','#2a7f4e','#a87408','#3f6fb5','#8a4fb3','#c0577f','#2f8a8a','#7a5a3a'];
 
 const $ = s => document.querySelector(s);
@@ -308,7 +308,7 @@ function render(){
 function stat(v,l){ return `<div class="stat"><b class="num">${v}</b><span>${l}</span></div>`; }
 
 function renderShell(){
-  $('#stats').innerHTML = stat('–','idées') + stat('–','réservées') + stat('–','achetées') + stat('–','personnes gâtées');
+  $('#stats').innerHTML = stat('–','idées') + stat('–','prises') + stat('–','achetées') + stat('–','personnes gâtées');
   $('#bar-fill').style.width = '0%'; $('#bar-pct').textContent = '0 %'; $('#hotte-sub').textContent = '';
   $('#lutins').innerHTML = '<span class="empty-line">Les lutins arrivent…</span>';
   let html;
@@ -325,7 +325,7 @@ function renderStats(){
   const stars = gifts.reduce((a,g) => a + (STATES[g.state]?.stars || 0), 0);
   const covered = people.filter(p => gifts.some(g => g.person === p.id && g.state !== 'idea')).length;
   const pct = total ? Math.round(stars / (total * 3) * 100) : 0;
-  $('#stats').innerHTML = stat(total,'idées') + stat(taken,'réservées') + stat(bought,'achetées') + stat(`${covered}/${people.length}`,'personnes gâtées');
+  $('#stats').innerHTML = stat(total,'idées') + stat(taken,'prises') + stat(bought,'achetées') + stat(`${covered}/${people.length}`,'personnes gâtées');
   $('#bar-fill').style.width = pct + '%';
   $('#bar-pct').textContent = pct + ' %';
   $('#bar').setAttribute('aria-valuenow', pct);
