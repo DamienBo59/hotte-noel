@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Qui offre quoi à qui pour Noël.">
 <title>Le Noël des Borieu Rouch Valery Dalcol</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='9' width='18' height='12' rx='2' fill='%23c42f2c'/%3E%3Crect x='2' y='7' width='20' height='4' rx='1' fill='%23e2564d'/%3E%3Crect x='11' y='7' width='2' height='14' fill='%23f0bf4c'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,12 +71,6 @@ h1 em{font-style:normal;color:var(--red)}
 .lutin .rm-yes{padding:2px 8px;border-radius:999px;background:var(--red-soft);color:var(--red);font-size:12px;font-weight:800}
 .lutin-add{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;border:2px dashed var(--line);font-weight:700;color:var(--muted)}
 .lutin-add svg{width:14px;height:14px}
-.take{display:flex;align-items:center;gap:0;border-radius:999px;background:var(--red);color:var(--on-red);overflow:hidden}
-.take select{appearance:none;-webkit-appearance:none;border:0;border-radius:0;background:color-mix(in srgb,var(--on-red) 18%,transparent);color:var(--on-red);font-weight:800;font-size:13px;padding:6px 22px 6px 11px;
-  background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 12px) 52%,calc(100% - 8px) 52%;background-size:4px 4px;background-repeat:no-repeat;max-width:120px}
-.take select option{color:#14301f;background:#fff}
-.take button{padding:6px 11px;font-weight:800;font-size:13px;white-space:nowrap;color:var(--on-red)}
-.take button:disabled{opacity:.6;cursor:not-allowed}
 .cuff .rm{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--on-red) 14%,transparent)}
 .cuff .rm svg{width:12px;height:12px}
 .cuff .rm-yes{flex:none;padding:6px 10px;border-radius:999px;background:var(--on-red);color:var(--red);font-weight:800;font-size:13px;white-space:nowrap}
@@ -84,7 +79,6 @@ h1 em{font-style:normal;color:var(--red)}
 .tools-left{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
 .chip-btn{padding:7px 14px;border-radius:999px;border:2px solid var(--line);background:var(--surface);font-weight:700;font-size:14px}
 .chip-btn[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
-.me-pick{display:flex;align-items:center;gap:6px;font-weight:700;font-size:14px}
 select,input[type=text],input[type=url]{font:inherit;color:var(--fg);background:var(--surface);border:2px solid var(--line);border-radius:10px;padding:7px 10px}
 .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;font-weight:800;font-size:14px}
 .btn-red{background:var(--red);color:var(--on-red)}
@@ -109,30 +103,17 @@ select,input[type=text],input[type=url]{font:inherit;color:var(--fg);background:
 .gift-name{font-weight:700;overflow-wrap:anywhere}
 .gift-name a{color:inherit;text-decoration-color:var(--muted);text-underline-offset:3px}
 .gift-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:12px;color:var(--muted);font-weight:700}
-.state{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:800}
-.state svg{width:11px;height:11px}
-.s-idea{background:var(--surface-2);color:var(--muted)}
-.s-reserved{background:var(--gold-soft);color:var(--gold)}
-.s-bought{background:var(--green-soft);color:var(--green)}
-.s-wrapped{background:var(--red-soft);color:var(--red)}
 .who{display:inline-flex;align-items:center;gap:4px}
 .who .avatar{width:18px;height:18px;font-size:9px}
 .gift.done .gift-name{color:var(--muted)}
 .actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px}
 .act{padding:6px 11px;border-radius:999px;font-weight:800;font-size:13px;white-space:nowrap}
 .act-take{background:var(--red);color:var(--on-red)}
-.act-next{background:var(--green);color:var(--on-red)}
 .act-soft{background:var(--surface-2);color:var(--fg)}
 .act-icon{width:30px;height:30px;padding:0;display:grid;place-items:center;border-radius:50%;background:var(--surface-2);color:var(--muted)}
 .act-icon svg{width:14px;height:14px}
 .act-del{background:var(--red-soft);color:var(--red)}
 .no-gift{padding:14px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.wrapped-card{padding:22px 14px;display:grid;justify-items:center;gap:10px;text-align:center}
-.wrapped-card svg{width:64px;height:64px;color:var(--red)}
-.wrapped-card p{margin:0;font-weight:700}
-.wrapped-card .row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-@media (prefers-reduced-motion:no-preference){.wrapped-card svg{animation:wobble 2.6s ease-in-out infinite}}
-@keyframes wobble{0%,80%,100%{transform:rotate(0)}85%{transform:rotate(-8deg)}90%{transform:rotate(7deg)}95%{transform:rotate(-4deg)}}
 
 .notice{display:grid;justify-items:center;gap:12px;padding:40px 16px;text-align:center;background:var(--surface);border:2px dashed var(--line);border-radius:16px}
 .notice svg{width:48px;height:48px;color:var(--red)}
@@ -148,6 +129,22 @@ select,input[type=text],input[type=url]{font:inherit;color:var(--fg);background:
 .sheet input{width:100%}
 .sheet .row{display:flex;justify-content:flex-end;gap:8px}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:999px;font-weight:700;font-size:14px;max-width:calc(100% - 32px)}
+
+.chip{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:800;line-height:1.5}
+.chip-price{background:var(--gold-soft);color:var(--gold)}
+button.chip-price.empty{background:transparent;border:1.5px dashed var(--line);color:var(--muted);padding:1px 8px}
+.chip-wish{background:var(--green-soft);color:var(--green)}
+.chip-taken{background:var(--surface-2);color:var(--fg)}
+.chip-taken .avatar{width:16px;height:16px;font-size:8px;margin-left:-5px}
+.gift.taken .gift-name{color:var(--muted)}
+.lutin .euros{color:var(--muted);font-size:13px;font-weight:700}
+.pick-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.pick-list button{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:14px;border:2px solid var(--line);background:var(--surface);font-weight:800;text-align:left;min-width:0}
+.pick-list button:hover{border-color:var(--red)}
+.pick-list button span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pick-other{display:flex;gap:8px}
+.pick-other input{flex:1;min-width:0}
+.sheet .hint{margin:0;color:var(--muted);font-size:14px}
 </style>
 </head>
 <body>
@@ -168,7 +165,7 @@ select,input[type=text],input[type=url]{font:inherit;color:var(--fg);background:
   </header>
 
   <section class="lutins" aria-labelledby="lutins-h">
-    <div class="section-label" id="lutins-h">Les lutins et leurs étoiles</div>
+    <div class="section-label" id="lutins-h">Les lutins</div>
     <div class="lutin-row" id="lutins"></div>
   </section>
 
@@ -184,14 +181,28 @@ select,input[type=text],input[type=url]{font:inherit;color:var(--fg);background:
 </main>
 
 <div class="sheet-back" id="sheet-back" hidden>
-  <form class="sheet" id="sheet" autocomplete="off">
+  <form class="sheet" id="sheet" autocomplete="off" novalidate>
     <h3 id="sheet-title">Nouvelle idée</h3>
-    <label for="f1" id="f1-label"><span id="f1-text">Le cadeau</span><input type="text" id="f1" maxlength="120" required></label>
-    <label for="f2" id="f2-label">Lien (facultatif)<input type="url" id="f2" maxlength="500" placeholder="https://"></label>
+    <label for="f-label" id="f-label-wrap"><span id="f-label-text">Le cadeau</span><input type="text" id="f-label" maxlength="120"></label>
+    <label for="f-url" id="f-url-wrap">Lien (facultatif)<input type="url" id="f-url" maxlength="500" placeholder="https://"></label>
+    <label for="f-price" id="f-price-wrap">Prix à peu près, en euros (facultatif)<input type="number" id="f-price" min="0" max="99999" step="1" inputmode="numeric" placeholder="Ex : 40"></label>
     <div class="row">
-      <button type="button" class="btn btn-ghost" id="sheet-cancel">Annuler</button>
+      <button type="button" class="btn btn-ghost" data-close>Annuler</button>
       <button type="submit" class="btn btn-red" id="sheet-ok">Ajouter</button>
     </div>
+  </form>
+</div>
+
+<div class="sheet-back" id="pick-back" hidden>
+  <form class="sheet" id="pick" autocomplete="off">
+    <h3 id="pick-title">Qui prend ce cadeau ?</h3>
+    <p class="hint">Touche ton prénom.</p>
+    <div class="pick-list" id="pick-list"></div>
+    <div class="pick-other">
+      <input type="text" id="pick-name" maxlength="40" placeholder="Pas dans la liste ? Ton prénom" aria-label="Ton prénom, si tu n'es pas dans la liste">
+      <button type="submit" class="btn btn-red">OK</button>
+    </div>
+    <div class="row"><button type="button" class="btn btn-ghost" data-close>Annuler</button></div>
   </form>
 </div>
 <div class="toast" id="toast" role="status" hidden></div>
@@ -213,13 +224,6 @@ const ICON = {
   flake:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7M9 4l3 3 3-3M9 20l3-3 3 3"/></svg>',
   lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>'
 };
-const STATES = {
-  idea:{label:'Idée',stars:0,cls:'s-idea'},
-  reserved:{label:'Réservé',stars:1,cls:'s-reserved'},
-  bought:{label:'Acheté',stars:2,cls:'s-bought'},
-  wrapped:{label:'Emballé',stars:3,cls:'s-wrapped'}
-};
-const NEXT = {reserved:['bought','J\'ai acheté'],bought:['wrapped','J\'ai emballé']};
 const AVATAR_COLORS = ['#c42f2c','#2a7f4e','#a87408','#3f6fb5','#8a4fb3','#c0577f','#2f8a8a','#7a5a3a'];
 
 const $ = s => document.querySelector(s);
@@ -228,6 +232,8 @@ const lsGet = k => { try { return localStorage.getItem(k); } catch { return null
 const lsSet = (k,v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k,v); } catch {} };
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const norm = s => String(s || '').trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+const euros = n => Math.round(Number(n)).toLocaleString('fr-FR') + ' €';
+const parsePrice = v => { const n = parseFloat(String(v).replace(',', '.')); return Number.isFinite(n) && n >= 0 && n < 100000 ? Math.round(n) : null; };
 
 /* Code famille : dans le lien (#code), puis mémorisé sur l'appareil */
 let code = decodeURIComponent((location.hash || '').slice(1)) || lsGet('hotte.code') || '';
@@ -237,7 +243,6 @@ let mode = 'loading';            // loading | ready | nocode | offline
 let people = null, gifts = null, givers = [];
 let confirmDel = null, confirmPerson = null, confirmGiver = null;
 let filter = lsGet('hotte.filter') || 'all';
-let lastGiver = lsGet('hotte.giver') || '';
 
 async function rpc(fn, args = {}){
   const r = await fetch(`${SB_URL}/rest/v1/rpc/${fn}`, {
@@ -263,8 +268,8 @@ async function load(){
     else if (mode !== 'ready') { mode = 'offline'; render(); }
   }
 }
-async function act(fn, args, okMsg, btn){
-  try { apply(await rpc(fn, args)); if (btn !== undefined) burst(btn); if (okMsg) toast(okMsg); return true; }
+async function act(fn, args, okMsg, burstAt){
+  try { apply(await rpc(fn, args)); if (burstAt) burst(burstAt); if (okMsg) toast(okMsg); return true; }
   catch (e) {
     if (e.code === 'taken') toast('Trop tard, quelqu\'un vient de le prendre.');
     else if (e.code === 'gone') toast('Cette idée a été supprimée entre-temps.');
@@ -302,7 +307,6 @@ function avatar(name){
   let h = 0; for (const c of norm(name)) h = (h * 31 + c.charCodeAt(0)) >>> 0;
   return `<span class="avatar" style="background:${AVATAR_COLORS[h % AVATAR_COLORS.length]}" aria-hidden="true">${initials(name)}</span>`;
 }
-const defaultGiver = () => givers.includes(lastGiver) ? lastGiver : (givers[0] || '');
 
 function render(){
   countdown();
@@ -317,47 +321,46 @@ function render(){
 function stat(v,l){ return `<div class="stat"><b class="num">${v}</b><span>${l}</span></div>`; }
 
 function renderShell(){
-  $('#stats').innerHTML = stat('–','idées') + stat('–','prises') + stat('–','achetées') + stat('–','personnes gâtées');
+  $('#stats').innerHTML = stat('–','idées') + stat('–','prises') + stat('–','budget pris') + stat('–','personnes gâtées');
   $('#bar-fill').style.width = '0%'; $('#bar-pct').textContent = '0 %'; $('#hotte-sub').textContent = '';
   $('#lutins').innerHTML = '<span class="empty-line">Les lutins arrivent…</span>';
   let html;
   if (mode === 'nocode') html = `<div class="notice" style="grid-column:1/-1">${ICON.lock}<h2>Il faut le lien magique</h2><p>Ouvre le lien que Damien t'a envoyé, ou tape le code famille ci-dessous.</p><form id="code-form"><input type="text" id="code-input" placeholder="code famille" autocomplete="off" aria-label="Code famille"><button class="btn btn-red" type="submit">Entrer</button></form></div>`;
   else if (mode === 'offline') html = `<div class="notice" style="grid-column:1/-1">${ICON.flake}<h2>La hotte ne répond pas</h2><p>Vérifie ta connexion. La page réessaie toute seule toutes les quelques secondes.</p></div>`;
-  else html = `<div class="notice" style="grid-column:1/-1">${ICON.flake}<h2>On sort les chaussettes…</h2><p>Les listes de chacun s'affichent ici dans une seconde. Chaque personne a sa chaussette, chaque idée se réserve d'un clic.</p></div>`;
+  else html = `<div class="notice" style="grid-column:1/-1">${ICON.flake}<h2>On sort les chaussettes…</h2><p>Les listes de chacun s'affichent ici dans une seconde. Chaque personne a sa chaussette, chaque idée se prend d'un clic.</p></div>`;
   $('#board').innerHTML = html;
 }
 
 function renderStats(){
   const total = gifts.length;
-  const taken = gifts.filter(g => g.state !== 'idea').length;
-  const bought = gifts.filter(g => g.state === 'bought' || g.state === 'wrapped').length;
-  const stars = gifts.reduce((a,g) => a + (STATES[g.state]?.stars || 0), 0);
-  const covered = people.filter(p => gifts.some(g => g.person === p.id && g.state !== 'idea')).length;
-  const pct = total ? Math.round(stars / (total * 3) * 100) : 0;
-  $('#stats').innerHTML = stat(total,'idées') + stat(taken,'prises') + stat(bought,'achetées') + stat(`${covered}/${people.length}`,'personnes gâtées');
+  const taken = gifts.filter(g => g.taken);
+  const budget = taken.reduce((a,g) => a + (Number(g.price) || 0), 0);
+  const covered = people.filter(p => gifts.some(g => g.person === p.id && g.taken)).length;
+  const pct = total ? Math.round(taken.length / total * 100) : 0;
+  $('#stats').innerHTML = stat(total,'idées') + stat(taken.length,'prises') + stat(budget ? '≈ ' + euros(budget) : '–','budget pris') + stat(`${covered}/${people.length}`,'personnes gâtées');
   $('#bar-fill').style.width = pct + '%';
   $('#bar-pct').textContent = pct + ' %';
   $('#bar').setAttribute('aria-valuenow', pct);
-  $('#hotte-sub').textContent = `${stars} étoile${stars>1?'s':''} sur ${total*3}`;
+  $('#hotte-sub').textContent = `${taken.length} cadeau${taken.length>1?'x':''} pris sur ${total}`;
 }
 
-/* Les lutins = ceux qui offrent. Liste gérée dans la page, étoiles calculées sur leurs cadeaux. */
+/* Les lutins = ceux qui offrent. Une étoile par cadeau pris, et le budget engagé. */
 function renderLutins(){
-  const score = new Map(givers.map(n => [norm(n), {name:n, stars:0, listed:true}]));
+  const score = new Map(givers.map(n => [norm(n), {name:n, count:0, eur:0, listed:true}]));
   for (const g of gifts) {
-    if (!g.by || g.state === 'idea') continue;
+    if (!g.taken || !g.by) continue;
     const k = norm(g.by);
-    const e = score.get(k) || {name:g.by, stars:0, listed:false};
-    e.stars += STATES[g.state]?.stars || 0; score.set(k, e);
+    const e = score.get(k) || {name:g.by, count:0, eur:0, listed:false};
+    e.count++; e.eur += Number(g.price) || 0; score.set(k, e);
   }
-  const rows = [...score.values()].sort((a,b) => b.stars - a.stars);
-  const top = rows[0]?.stars > 0 ? rows[0].name : null;
+  const rows = [...score.values()].sort((a,b) => b.count - a.count || b.eur - a.eur);
+  const top = rows[0]?.count > 0 ? rows[0].name : null;
   $('#lutins').innerHTML = rows.map(r => {
     const n = esc(r.name);
     const rm = !r.listed ? '' : confirmGiver === r.name
       ? `<button class="rm-yes" data-act="giver-rm-yes" data-name="${n}">Retirer ?</button>`
       : `<button class="rm" data-act="giver-rm" data-name="${n}" aria-label="Retirer ${n} des lutins" title="Retirer">${ICON.x}</button>`;
-    return `<div class="lutin${r.name===top?' first':''}">${avatar(r.name)}<span>${n}</span><span class="stars num">${ICON.star.replace('<svg','<svg width="14" height="14"')}${r.stars}</span>${r.name===top?'<span class="crown">Lutin en chef</span>':''}${rm}</div>`;
+    return `<div class="lutin${r.name===top?' first':''}">${avatar(r.name)}<span>${n}</span><span class="stars num">${ICON.star.replace('<svg','<svg width="14" height="14"')}${r.count}</span>${r.eur ? `<span class="euros num">≈ ${euros(r.eur)}</span>` : ''}${r.name===top?'<span class="crown">Lutin en chef</span>':''}${rm}</div>`;
   }).join('') + `<button class="lutin-add" data-act="giver-add">${ICON.plus}Un lutin</button>`;
 }
 
@@ -366,16 +369,15 @@ const byOrder = (a,b) => (a.ord ?? 999) - (b.ord ?? 999) || String(a.name).local
 function renderBoard(){
   if (!people.length) { $('#board').innerHTML = `<div class="notice" style="grid-column:1/-1">${ICON.gift}<h2>Aucune chaussette accrochée</h2><p>Ajoute une première personne avec le bouton « Une personne ».</p></div>`; return; }
   let list = people.slice().sort(byOrder);
-  if (filter === 'todo') list = list.filter(p => !gifts.some(g => g.person === p.id && g.state !== 'idea'));
-  if (!list.length) { $('#board').innerHTML = `<div class="notice" style="grid-column:1/-1">${ICON.star}<h2>Tout le monde est gâté</h2><p>Chaque personne a au moins un cadeau réservé. Repasse sur « Tout le monde » pour finir les achats.</p></div>`; return; }
+  if (filter === 'todo') list = list.filter(p => !gifts.some(g => g.person === p.id && g.taken));
+  if (!list.length) { $('#board').innerHTML = `<div class="notice" style="grid-column:1/-1">${ICON.star}<h2>Tout le monde est gâté</h2><p>Chaque personne a au moins un cadeau pris.</p></div>`; return; }
   $('#board').innerHTML = list.map(personCard).join('');
 }
 
 function personCard(p){
   const mine = gifts.filter(g => g.person === p.id);
-  const taken = mine.filter(g => g.state !== 'idea').length;
-  const stars = mine.reduce((a,g) => a + (STATES[g.state]?.stars || 0), 0);
-  const frac = mine.length ? stars / (mine.length * 3) : 0;
+  const taken = mine.filter(g => g.taken).length;
+  const frac = mine.length ? taken / mine.length : 0;
   const sub = mine.length ? `${taken} pris sur ${mine.length} idée${mine.length>1?'s':''}` : 'Pas encore d\'idée';
   const pid = esc(p.id), pname = esc(p.name);
   const add = `<button class="add" data-act="add" data-person="${pid}" aria-label="Ajouter une idée pour ${pname}">${ICON.plus}</button>`;
@@ -388,43 +390,47 @@ function personCard(p){
   return `<article class="sock-card"><div class="cuff">${sockSvg(p.id, frac)}<div class="cuff-text"><h2>${pname}</h2><p class="num">${sub}</p></div>${add}${rm}</div>${body}</article>`;
 }
 
-function giverSelect(id){
-  const cur = defaultGiver();
-  const opts = givers.map(n => `<option value="${esc(n)}"${n===cur?' selected':''}>${esc(n)}</option>`).join('');
-  return `<select id="giver-${esc(id)}" data-giver-for="${esc(id)}" aria-label="Qui prend ce cadeau ?">${opts || '<option value="">aucun lutin</option>'}</select>`;
-}
-
 function giftRow(g){
-  const st = STATES[g.state] || STATES.idea;
   const name = g.url && /^https?:\/\//i.test(g.url) ? `<a href="${esc(g.url)}" target="_blank" rel="noopener noreferrer">${esc(g.label)}</a>` : esc(g.label);
-  const starsHtml = st.stars ? ' ' + Array.from({length:st.stars}, () => ICON.star).join('') : '';
-  let meta = `<span class="state ${st.cls}">${st.label}${starsHtml}</span>`;
-  if (g.state !== 'idea' && g.by) meta += `<span class="who">${avatar(g.by)}${esc('par ' + g.by)}</span>`;
   const id = esc(g.id);
-  let actions = '';
-  if (g.state === 'idea') {
-    actions += `<span class="take">${giverSelect(g.id)}<button data-act="take" data-id="${id}"${givers.length ? '' : ' disabled'}>Je prends</button></span>`;
-  } else {
-    if (NEXT[g.state]) actions += `<button class="act act-next" data-act="next" data-id="${id}">${NEXT[g.state][1]}</button>`;
-    actions += `<button class="act-icon" data-act="release" data-id="${id}" aria-label="Remettre en idée" title="Remettre en idée">${ICON.undo}</button>`;
-  }
+  let meta = g.price != null
+    ? `<button class="chip chip-price num" data-act="price" data-id="${id}" title="Modifier le prix">≈ ${euros(g.price)}</button>`
+    : `<button class="chip chip-price empty" data-act="price" data-id="${id}">+ prix</button>`;
+  if (g.source === 'wish') meta += `<span class="chip chip-wish">Sa demande</span>`;
+  if (g.taken) meta += `<span class="chip chip-taken">${g.by ? avatar(g.by) + '&nbsp;' + esc(g.by) : 'Déjà pris'}</span>`;
+  let actions = g.taken
+    ? `<button class="act-icon" data-act="release" data-id="${id}" aria-label="Libérer ce cadeau" title="Libérer ce cadeau">${ICON.undo}</button>`
+    : `<button class="act act-take" data-act="take" data-id="${id}">Je prends</button>`;
   actions += confirmDel === g.id
     ? `<button class="act act-del" data-act="del-yes" data-id="${id}">Supprimer ?</button>`
     : `<button class="act-icon" data-act="del" data-id="${id}" aria-label="Supprimer l'idée" title="Supprimer">${ICON.x}</button>`;
-  return `<li class="gift${g.state==='wrapped'?' done':''}"><div class="gift-main"><span class="gift-name">${name}</span><span class="gift-meta">${meta}</span></div><div class="actions">${actions}</div></li>`;
+  return `<li class="gift${g.taken?' taken':''}"><div class="gift-main"><span class="gift-name">${name}</span><span class="gift-meta">${meta}</span></div><div class="actions">${actions}</div></li>`;
 }
 
 const findGift = id => gifts.find(g => g.id === id);
 
-/* Le choix du lutin est retenu sur l'appareil pour les cadeaux suivants */
-document.addEventListener('change', e => {
-  const s = e.target.closest('[data-giver-for]');
-  if (!s) return;
-  lastGiver = s.value; lsSet('hotte.giver', lastGiver);
-  document.querySelectorAll('[data-giver-for]').forEach(o => { if (o !== s && givers.includes(lastGiver)) o.value = lastGiver; });
-});
+/* Fenêtre « Qui prend ? » */
+let pickCtx = null;
+function openPick(id, btn){
+  const g = findGift(id); if (!g) return;
+  pickCtx = {id, btn};
+  $('#pick-title').textContent = `Qui prend « ${g.label} » ?`;
+  $('#pick-list').innerHTML = givers.map(n => `<button type="button" data-pick="${esc(n)}">${avatar(n)}<span>${esc(n)}</span></button>`).join('');
+  $('#pick-name').value = '';
+  $('#pick-back').hidden = false;
+  setTimeout(() => $('#pick-list button')?.focus(), 30);
+}
+async function claim(by){
+  const ctx = pickCtx; if (!ctx || !by) return;
+  closeAll();
+  if (!givers.some(n => norm(n) === norm(by))) { try { givers = (await rpc('hotte_add_giver', {p_name: by})).givers || givers; } catch {} }
+  act('hotte_set_state', {p_id: ctx.id, p_state:'reserved', p_by: by}, `C'est noté, ${by} s'en occupe.`, ctx.btn);
+}
+$('#pick-list').addEventListener('click', e => { const b = e.target.closest('[data-pick]'); if (b) claim(b.dataset.pick); });
+$('#pick').addEventListener('submit', e => { e.preventDefault(); const v = $('#pick-name').value.trim().slice(0, 40); if (v) claim(v); });
 
 document.addEventListener('click', e => {
+  if (e.target.closest('[data-close]') || e.target.classList.contains('sheet-back')) { closeAll(); return; }
   const b = e.target.closest('[data-act],[data-filter]');
   if (!b) return;
   if (b.dataset.filter) { filter = b.dataset.filter; lsSet('hotte.filter', filter); render(); return; }
@@ -435,24 +441,16 @@ document.addEventListener('click', e => {
   if (keep !== 'person' && confirmPerson) { confirmPerson = null; dirty = true; }
   if (keep !== 'giver' && confirmGiver) { confirmGiver = null; dirty = true; }
   if (dirty && !keep) render();
-  if (a === 'take') {
-    const by = document.getElementById('giver-' + id)?.value || defaultGiver();
-    if (!by) { toast('Ajoute d\'abord un lutin.'); return; }
-    act('hotte_set_state', {p_id:id, p_state:'reserved', p_by:by}, `Réservé par ${by}, une étoile !`, b);
-  }
+  if (a === 'take') openPick(id, b);
+  else if (a === 'release') act('hotte_set_state', {p_id:id, p_state:'idea', p_by:null}, 'Cadeau libéré.');
   else if (a === 'add') openSheet('gift', {person: b.dataset.person});
-  else if (a === 'next') {
-    const g = findGift(id); if (!g || !NEXT[g.state]) return;
-    const to = NEXT[g.state][0];
-    act('hotte_set_state', {p_id:id, p_state:to, p_by:null}, to === 'wrapped' ? 'Emballé, trois étoiles !' : 'Acheté, deux étoiles !', b);
-  }
-  else if (a === 'release') act('hotte_set_state', {p_id:id, p_state:'idea', p_by:null});
+  else if (a === 'price') openSheet('price', {id});
   else if (a === 'del') { confirmDel = id; render(); }
   else if (a === 'del-yes') { confirmDel = null; act('hotte_delete_gift', {p_id:id}, 'Idée retirée.'); }
   else if (a === 'person-rm') { confirmPerson = b.dataset.person; render(); }
   else if (a === 'person-rm-yes') {
     const p = people.find(x => x.id === b.dataset.person); confirmPerson = null;
-    act('hotte_remove_person', {p_id: b.dataset.person}, `${p ? p.name : 'La personne'} a été retiré·e de la liste.`);
+    act('hotte_remove_person', {p_id: b.dataset.person}, `${p ? p.name : 'La personne'} ne fait plus partie de la liste.`);
   }
   else if (a === 'giver-add') openSheet('giver', {});
   else if (a === 'giver-rm') { confirmGiver = b.dataset.name; render(); }
@@ -469,30 +467,35 @@ document.addEventListener('submit', e => {
 
 $('#add-person').addEventListener('click', () => openSheet('person', {}));
 
+/* Feuille d'ajout : idée, prix, lutin ou chaussette */
 let sheetCtx = null;
 function openSheet(kind, ctx){
   sheetCtx = {kind, ...ctx};
-  const f1 = $('#f1'); f1.value = ''; $('#f2').value = '';
-  $('#f2-label').hidden = kind !== 'gift';
-  const set = (title, label, ph, ok) => { $('#sheet-title').textContent = title; $('#f1-text').textContent = label; f1.placeholder = ph; $('#sheet-ok').textContent = ok; };
+  const L = $('#f-label'), U = $('#f-url'), P = $('#f-price');
+  L.value = ''; U.value = ''; P.value = '';
+  $('#f-label-wrap').hidden = kind === 'price';
+  $('#f-url-wrap').hidden = kind !== 'gift';
+  $('#f-price-wrap').hidden = !(kind === 'gift' || kind === 'price');
+  const set = (title, label, ph, ok) => { $('#sheet-title').textContent = title; $('#f-label-text').textContent = label; L.placeholder = ph; $('#sheet-ok').textContent = ok; };
   if (kind === 'gift') { const p = people.find(x => x.id === ctx.person); set(`Une idée pour ${p ? p.name : '…'}`, 'Le cadeau', 'Ex : un gaufrier', 'Ajouter'); }
+  else if (kind === 'price') { const g = findGift(ctx.id); set(`Prix de « ${g ? g.label : '…'} »`, '', '', 'Enregistrer'); if (g?.price != null) P.value = Math.round(g.price); }
   else if (kind === 'giver') set('Nouveau lutin', 'Prénom de celui ou celle qui offre', 'Ex : Tatie', 'Ajouter');
   else set('Nouvelle chaussette', 'Prénom', 'Ex : Tonton Jacques', 'Accrocher');
   $('#sheet-back').hidden = false;
-  setTimeout(() => f1.focus(), 30);
+  setTimeout(() => (kind === 'price' ? P : L).focus(), 30);
 }
-function closeSheet(){ $('#sheet-back').hidden = true; sheetCtx = null; }
-$('#sheet-cancel').addEventListener('click', closeSheet);
-$('#sheet-back').addEventListener('click', e => { if (e.target.id === 'sheet-back') closeSheet(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#sheet-back').hidden) closeSheet(); });
+function closeAll(){ $('#sheet-back').hidden = true; $('#pick-back').hidden = true; sheetCtx = null; pickCtx = null; }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
 $('#sheet').addEventListener('submit', e => {
   e.preventDefault();
-  const v1 = $('#f1').value.trim(), v2 = $('#f2').value.trim();
-  const ctx = sheetCtx; if (!v1 || !ctx) return;
-  closeSheet();
-  if (ctx.kind === 'gift') act('hotte_add_gift', {p_person: ctx.person, p_label: v1, p_url: /^https?:\/\//i.test(v2) ? v2 : null}, 'Idée glissée dans la chaussette.');
-  else if (ctx.kind === 'giver') act('hotte_add_giver', {p_name: v1}, `${v1} rejoint les lutins.`);
-  else act('hotte_add_person', {p_name: v1}, `${v1} a sa chaussette.`);
+  const ctx = sheetCtx; if (!ctx) return;
+  const label = $('#f-label').value.trim(), url = $('#f-url').value.trim(), price = parsePrice($('#f-price').value);
+  if (ctx.kind !== 'price' && !label) { $('#f-label').focus(); return; }
+  closeAll();
+  if (ctx.kind === 'gift') act('hotte_add_gift', {p_person: ctx.person, p_label: label, p_url: /^https?:\/\//i.test(url) ? url : null, p_price: price}, 'Idée glissée dans la chaussette.');
+  else if (ctx.kind === 'price') act('hotte_set_price', {p_id: ctx.id, p_price: price}, price == null ? 'Prix retiré.' : 'Prix noté.');
+  else if (ctx.kind === 'giver') act('hotte_add_giver', {p_name: label}, `${label} rejoint les lutins.`);
+  else act('hotte_add_person', {p_name: label}, `${label} a sa chaussette.`);
 });
 
 let toastT;
@@ -513,7 +516,7 @@ function size(){
 }
 function burst(el){
   if (reduced) return;
-  const r = el?.getBoundingClientRect?.() || {left:W/2, top:H/2, width:0, height:0};
+  const r = el?.isConnected && el.getBoundingClientRect ? el.getBoundingClientRect() : {left:W/2, top:H/2, width:0, height:0};
   const x = r.left + r.width/2, y = r.top + r.height/2;
   const cols = ['--red','--gold','--green','--flake'].map(cssVar);
   for (let i = 0; i < 46; i++) {
@@ -546,10 +549,10 @@ function loop(){
 size(); addEventListener('resize', size);
 if (!reduced) loop();
 
-/* Démarrage et rafraîchissement régulier tant que l'onglet est visible */
+/* Démarrage et rafraîchissement régulier tant que l'onglet est visible et qu'aucune fenêtre n'est ouverte */
 render();
 load();
-setInterval(() => { if (document.visibilityState === 'visible' && $('#sheet-back').hidden && document.activeElement?.tagName !== 'SELECT' && (mode === 'ready' || mode === 'offline')) load(); }, POLL_MS);
+setInterval(() => { if (document.visibilityState === 'visible' && $('#sheet-back').hidden && $('#pick-back').hidden && (mode === 'ready' || mode === 'offline')) load(); }, POLL_MS);
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && code) load(); });
 })();
 </script>
